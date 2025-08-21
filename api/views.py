@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from .models import Autor, Editora, Livro
 from .serializers import AutorSerializers, EditoraSerializers, LivroSerializers
 from rest_framework.decorators import api_view
@@ -9,6 +9,26 @@ from rest_framework import status
 class AutoresView(ListCreateAPIView):
     queryset = Autor.objects.all()
     serializer_class = AutorSerializers
+
+class AutoresDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = Autor.objects.all()
+    serializer_class = AutorSerializers
+        
+class EditoraView(ListCreateAPIView):
+    queryset = Editora.objects.all()
+    serializer_class = EditoraSerializers 
+
+class EditoraDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = Editora.objects.all()
+    serializer_class = EditoraSerializers    
+    
+class LivroView(ListCreateAPIView):
+    queryset = Livro.objects.all()
+    serializer_class = LivroSerializers   
+
+class LivroDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = Livro.objects.all()
+    serializer_class = LivroSerializers      
 
 @api_view(['GET','POST'])    
 def visualizacao_autor(request):
@@ -24,10 +44,4 @@ def visualizacao_autor(request):
     else:
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)    
     
-class EditoraView(ListCreateAPIView):
-    queryset = Editora.objects.all()
-    serializer_class = EditoraSerializers 
-    
-class LivroView(ListCreateAPIView):
-    queryset = Livro.objects.all()
-    serializer_class = LivroSerializers      
+     
