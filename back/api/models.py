@@ -36,6 +36,9 @@ class Livro(models.Model):
     estoque = models.IntegerField()
     desconto = models.DecimalField(max_digits=10, decimal_places=2)
     disponivel = models.BooleanField(default=True)
+    dimensoes = models.CharField(max_length=100, null=True, blank=True)
+    peso = models.FloatField(null=True, blank=True)
+
 
 
     def __str__(self):
