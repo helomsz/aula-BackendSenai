@@ -9,6 +9,7 @@ Este repositório contém minhas atividades, exercícios e projetos relacionados
 - SQLite
 - JWT / Autenticação
 - Python
+- Angular
 
 ## 🧠 Objetivo
 
