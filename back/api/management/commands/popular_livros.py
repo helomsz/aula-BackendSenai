@@ -10,7 +10,7 @@ class Command(BaseCommand):
         parser.add_argument("--arquivo_livros", default="population/livros.csv")
         parser.add_argument("--truncate", action="store_true")
         parser.add_argument("--update", action="store_true")
-        
+
     @transaction.atomic
     def handle(self, *a, **o):
         df_editoras = pd.read_csv(o["arquivo_editoras"], encoding="utf-8-sig")
@@ -19,7 +19,7 @@ class Command(BaseCommand):
         df_editoras.columns = [c.strip().lower().lstrip("\ufeff") for c in df_editoras.columns]
         df_autores.columns = [c.strip().lower().lstrip("\ufeff") for c in df_autores.columns]
         df_livros.columns = [c.strip().lower().lstrip("\ufeff") for c in df_livros.columns]
-        
+
         df_autores['nome_completo'] = df_autores['nome']+' '+df_autores['sobrenome']
         df_autores['id'] = df_autores.index + 1
         mapa_autores = dict(zip(df_autores['nome_completo'], df_autores["id"]))
@@ -27,15 +27,15 @@ class Command(BaseCommand):
         df_editoras['id'] = df_editoras.index + 1
         mapa_editoras = dict(zip(df_editoras['editora'], df_editoras['id']))
         df_livros['id_editora'] = df_livros["editora"].map(mapa_editoras)
-        
+
         if o["truncate"]: Livro.objects.all().delete()
-        
+
         df_livros['titulo']=df_livros["titulo"].astype(str).str.strip()
         df_livros['subtitulo']=df_livros["subtitulo"].astype(str).str.strip()
-        
+
         df_livros['autor']=df_livros["id_autor"].astype(int)
         df_livros['editora']=df_livros["id_editora"].astype(int)
-        
+
         df_livros['isbn']=df_livros["isbn"].astype(str).str.strip()
         df_livros['descricao']=df_livros["descricao"].astype(str).str.strip()
         df_livros['idioma']=df_livros["idioma"].astype(str).str.strip()

@@ -46,7 +46,7 @@ class AutoresDetailView(RetrieveUpdateDestroyAPIView):
 class EditoraView(ListCreateAPIView):
     queryset = Editora.objects.all()
     serializer_class = EditoraSerializers
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
 
 class EditoraDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Editora.objects.all()
@@ -57,7 +57,7 @@ class EditoraDetailView(RetrieveUpdateDestroyAPIView):
 class LivroView(ListCreateAPIView):
     queryset = Livro.objects.all()
     serializer_class = LivroSerializers 
-    permission_classes = [IsAuthenticated]  
+    #permission_classes = [IsAuthenticated]  
 
 class LivroDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Livro.objects.all()

@@ -1,15 +1,16 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { AutoresService } from '../../services/autores.services';
-import { Autor } from '../../models/autor';
+import { EditorasService } from '../../services/editoras.service';
+import { Editora } from '../../models/editora';
 import { AuthService } from '../../services/auth.services';
+
 
 @Component({
   standalone: true,
   imports: [RouterLink],
   template: `
     <section style="max-width:900px;margin:2rem auto;padding:0 1rem">
-      <h1>Autores</h1>
+      <h1>Editoras</h1>
 
       @if (carregando()) {
         <p>Carregando…</p>
@@ -17,12 +18,14 @@ import { AuthService } from '../../services/auth.services';
         <p style="color:#c62828">{{ erro() }}</p>
       } @else {
         <ul style="padding-left:1.25rem">
-          @for (a of autores(); track a.id) {
+          @for (a of editoras(); track a.id) {
             <li style="margin:.25rem 0">
-              <strong>{{ a.nome }} {{ a.sobrenome }}</strong>
-              @if (a.nacionalidade) { — <em style="color:#666">{{ a.nacionalidade }}</em> }
-              @if (a.data_nascimento) { • {{ a.data_nascimento }} }
-              @if (a.biografia) { <div style="color:#555">{{ a.biografia }}</div> }
+              <strong>{{ a.editora }} {{ a.editora }}</strong>
+              <strong>{{ a.cnpj }} {{ a.cnpj }}</strong>
+              @if (a.endereco) { — <em style="color:#666">{{ a.endereco}}</em> }
+              @if (a.telefone) { • {{ a.telefone }} }
+              @if (a.email) { <div style="color:#555">{{ a.email }}</div>
+              @if (a.site) { • {{ a.site }} } }
             </li>
           }
         </ul>
@@ -34,10 +37,10 @@ import { AuthService } from '../../services/auth.services';
     </section>
   `
 })
-export class AutoresComponent {
-  private svc = inject(AutoresService);
+export class EditorasComponent {
+  private svc = inject(EditorasService);
   private auth = inject(AuthService);   //Ver o token
-  autores = signal<Autor[]>([]);
+  editoras = signal<Editora[]>([]);
   carregando = signal(true);
   erro = signal<string | null>(null);
 
@@ -45,8 +48,8 @@ export class AutoresComponent {
     console.log("Token de acesso: ", this.auth.token());
 
     this.svc.listar().subscribe({
-      next: (data) => { this.autores.set(data); this.carregando.set(false); },
-      error: () => { this.erro.set('Falha ao carregar autores'); this.carregando.set(false); }
+      next: (data) => { this.editoras.set(data); this.carregando.set(false); },
+      error: () => { this.erro.set('Falha ao carregar editoras'); this.carregando.set(false); }
     });
   }
 }

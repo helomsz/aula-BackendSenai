@@ -25,17 +25,17 @@ export class AuthService {
 
   login(username: string, password: string): Observable<TokenPair> {
     const AUTH_URL = `${this.base}/token/`;
-    
-    
+
+
     return this.http.post<TokenPair>(AUTH_URL, { username, password }).pipe(
       tap(tokens => {
         if (tokens.access) { this._access.set(tokens.access); storage.set('access', tokens.access); }
         if (tokens.refresh) { this._refresh.set(tokens.refresh); storage.set('refresh', tokens.refresh); }
       })
-      
+
     );
   }
-  
+
   refresh(): Observable<{ access: string }> {
     const REFRESH_URL = `${this.base}/refresh/`;
     const refresh = this._refresh();
