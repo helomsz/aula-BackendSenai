@@ -1,0 +1,50 @@
+
+section h1 {
+
+  text-align: center;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0;
+}
+
+
+section h1::after {
+    display: none;
+}
+
+
+section p {
+    text-align: center;
+    font-size: 1.15rem;
+    color: var(--text-medium);
+    margin-bottom: 3rem; 
+}
+
+nav {
+  margin-top: 2rem; 
+  display: flex;
+  justify-content: center; 
+  gap: 1.2rem; 
+}
+
+
+nav a {
+  background-color: var(--blue-primary);
+  color: var(--white);
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px; 
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+  box-shadow: 0 4px 10px rgba(63, 81, 181, 0.4); 
+  text-transform: uppercase; 
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+nav a:hover {
+  background-color: #303f9f;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(63, 81, 181, 0.6); 
+}

@@ -1,0 +1,180 @@
+/* Importando fonte Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Variáveis CSS para facilitar a manutenção */
+:root {
+  /* Tons de Azul */
+  --blue-primary: #3f51b5; /* Azul mais forte para destaque */
+  --blue-secondary: #5c6bc0; /* Azul médio para botões */
+  --blue-light: #e8eaf6; /* Azul muito claro para fundos sutis */
+  
+  /* Cores Neutras */
+  --text-dark: #263238; /* Quase preto para melhor contraste */
+  --text-medium: #546e7a;
+  --text-light: #90a4ae;
+  --white: #ffffff;
+  --background-grey: #f4f5f7; /* Fundo geral mais claro */
+  
+  /* Sombras */
+  --shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.08); /* Sombra mais visível */
+  --shadow-hover: 0 15px 45px rgba(0, 0, 0, 0.15);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  background-color: var(--background-grey); /* Fundo geral claro */
+  color: var(--text-dark);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* 1. SEÇÃO como Bloco Principal */
+section {
+  max-width: 1000px; /* Largura ligeiramente menor para conter o conteúdo */
+  margin: 4rem auto; /* Espaçamento vertical grande */
+  padding: 3rem; /* Espaçamento interno */
+  background-color: var(--white); /* Fundo branco e proeminente */
+  border-radius: 16px; 
+  box-shadow: var(--shadow-medium); /* Sombra para destacá-la */
+}
+
+/* --- */
+
+h1 {
+  font-size: 2.5rem; 
+  font-weight: 700; 
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+  padding-bottom: 1rem;
+  text-align: left;
+  position: relative;
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 60px; 
+    height: 4px;
+    background-color: var(--blue-primary);
+    margin-top: 10px;
+}
+
+/* --- */
+
+ul {
+  list-style: none;
+  padding: 0; /* Removendo o padding-left inline do HTML */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem; 
+  margin-top: 3rem;
+}
+
+li {
+  /* Removendo o margin inline do HTML */
+  background-color: var(--blue-light); 
+  border: 1px solid #c5cae9; 
+  padding: 2rem; 
+  border-radius: 12px;
+  box-shadow: none; 
+  transition: all 0.3s ease;
+  border-left: 6px solid var(--blue-primary);
+}
+
+li:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 10px 20px rgba(63, 81, 181, 0.2); 
+  border-color: var(--blue-primary);
+}
+
+/* --- */
+
+/* Detalhes dos dados */
+strong {
+  display: block;
+  font-size: 1.1rem; 
+  font-weight: 600;
+  color: var(--blue-primary); 
+  margin-bottom: 0.2rem;
+}
+
+em {
+  color: var(--text-medium); /* Removendo o style inline do HTML */
+  font-style: normal; 
+  font-weight: 400; 
+}
+
+div, span {
+  display: block;
+  color: var(--text-medium); /* Removendo o style inline do HTML */
+  font-size: 0.95rem;
+  margin-top: 0.5rem; 
+}
+
+/* --- */
+
+/* Link para sites */
+a {
+  color: var(--blue-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--blue-primary);
+  text-decoration: underline;
+}
+
+/* --- */
+
+/* Mensagens de status */
+/* Usando o seletor 'p' dentro da section para estilizar as mensagens */
+section > p {
+    text-align: center;
+    padding: 1rem;
+    font-weight: 500;
+}
+
+/* Mensagem de sucesso (Carregando) */
+section > p:not([style*="color:"]) { /* Estilizando o 'Carregando...' padrão */
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* Mensagem de erro (Removendo o style inline do HTML) */
+section > p[style*="#c62828"] { /* Estilizando o parágrafo de erro */
+    color: #c62828 !important;
+    font-weight: 600;
+    background-color: #ffebee;
+    border-radius: 8px;
+}
+
+/* --- */
+
+/* Navegação */
+nav {
+  margin-top: 4rem; /* Removendo o margin inline do HTML */
+  text-align: center;
+}
+
+nav a {
+  background-color: var(--blue-primary);
+  color: var(--white);
+  padding: 0.8rem 1.8rem; 
+  border-radius: 30px; 
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  display: inline-block;
+  box-shadow: 0 4px 10px rgba(63, 81, 181, 0.4); 
+}
+
+nav a:hover {
+  background-color: #303f9f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(63, 81, 181, 0.6); 
+}
